@@ -1,0 +1,49 @@
+{% extends 'basic.html' %}
+{% block title %}Order Detail - Odore{% endblock %}
+
+
+{% block body %}
+{% include 'messages.html' %}
+{% load static %}
+<section class="w3l-inner-banner-main">
+    <div class="about-inner">
+        <div class="wrapper">
+            <ul class="breadcrumbs-custom-path">
+                <h3 align="center">Complain</h3>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<div class="login">
+		<div class="main-agileits">
+				<div class="form-w3agile form1">
+					<h3>Add Complain</h3>
+
+					<form action="/submitcomplaint" method="post" enctype="multipart/form-data">
+						{% csrf_token %}
+						<div class="form-group">
+							<label class="">Subject</label>
+							<input type="text" class="form-control" placeholder="Subject" name="subject" required="">
+
+						</div>
+						<label class="">Email</label>
+						<div class="key">
+							<i class="fa fa-envelope" aria-hidden="true"></i>
+							<input  type="text" value="Email" name="email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" required="">
+							<div class="clearfix"></div>
+						</div>
+
+						<div class="form-group">
+                                <label class="mb-2"> Description</label>
+                                <input type="text" class="form-control" id="description" name="Description" placeholder="Description" required="">
+						</div>
+
+						<input type="submit" value="Submit">
+					</form>
+				</div>
+
+			</div>
+		</div>
+
+{%endblock%}

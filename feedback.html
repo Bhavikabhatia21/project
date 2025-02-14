@@ -1,0 +1,68 @@
+{% extends 'basic.html' %}
+{% block title %}Order Detail - Odore{% endblock %}
+
+
+{% block body %}
+{% include 'messages.html' %}
+{% load static %}
+<head>
+    <!-- Other head elements -->
+    <!-- RateYo library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+</head>
+
+
+<script>
+    $(document).ready(function () {
+        // Initialize RateYo
+        $("#rating").rateYo({
+            rating: 0,  // Initial rating
+            fullStar: true,  // Allow full stars
+            onSet: function (rating, rateYoInstance) {
+                // Update the hidden input with the selected rating
+                $("#ratings").val(rating);
+            }
+        });
+    });
+</script>
+
+<!-- inner banner -->
+<section class="w3l-inner-banner-main">
+    <div class="about-inner">
+        <div class="wrapper">
+            <ul class="breadcrumbs-custom-path">
+                <h3 align="center">Feedback</h3>
+            </ul>
+        </div>
+    </div>
+</section>
+<!-- //covers -->
+		<div class="main-agileits">
+			<div class="form-w3agile">
+			<div class="feedback-form">
+				<h4>Leave Feedback</h4>
+				<form method="post" action="/storefeedback">
+					{% csrf_token %}
+					<input type="hidden" name="productid" value="{{ productid }}">
+					<div class="form-group">
+						<div class="star-rating" id="rating"></div>
+						<input type="hidden" name="ratings" id="ratings">
+					</div>
+					<div class="form-group">
+						<label for="feedback_message">Feedback Message:</label>
+						<textarea class="form-control" id="feedback_message" name="feedback_message" rows="3" required></textarea>
+					</div>
+					<button type="submit" class="btn btn-secondary">Submit Feedback</button>
+				</form>
+			</div>
+
+		</div>
+	</div>
+	</div>
+	</div>
+</section>
+
+<!-- form -->
+{%endblock%}

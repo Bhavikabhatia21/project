@@ -1,0 +1,274 @@
+{% extends 'basic.html' %}
+{% block title %}Complete Profile - Odore{% endblock %}
+
+
+{% block body %}
+{% include 'messages.html' %}
+{% load static %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta property="og:title" content="Vide" />
+<meta name="keywords" content="Big store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //for-mobile-apps -->
+<link href=" {% static 'css/bootstrap.css' %} " rel='stylesheet' type='text/css' />
+<!-- Custom Theme files -->
+<link href=" {% static 'css/style.css' %} " rel='stylesheet' type='text/css' />
+<!-- js -->
+   <script src=" {% static 'js/jquery-1.11.1.min.js' %} "></script>
+<!-- //js -->
+<!-- start-smoth-scrolling -->
+<script type="text/javascript" src=" {% static 'js/move-top.js' %} "></script>
+<script type="text/javascript" src=" {% static 'js/easing.js' %} "></script>
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		$(".scroll").click(function(event){
+			event.preventDefault();
+			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+		});
+	});
+</script>
+<!-- start-smoth-scrolling -->
+<link href=" {% static 'css/font-awesome.css' %} " rel="stylesheet">
+<link href=' {% static '//fonts.googleapis.com/css?family=Montserrat:400,700' %} ' rel='stylesheet' type='text/css'>
+<link href=' {% static '//fonts.googleapis.com/css?family=Noto+Sans:400,700' %} ' rel='stylesheet' type='text/css'>
+<!--- start-rate---->
+<script src=" {% static 'js/jstarbox.js' %} "></script>
+	<link rel="stylesheet" href=" {% static 'css/jstarbox.css' %} " type="text/css" media="screen" charset="utf-8" />
+		<script type="text/javascript">
+			jQuery(function() {
+			jQuery('.starbox').each(function() {
+				var starbox = jQuery(this);
+					starbox.starbox({
+					average: starbox.attr('data-start-value'),
+					changeable: starbox.hasClass('unchangeable') ? false : starbox.hasClass('clickonce') ? 'once' : true,
+					ghosting: starbox.hasClass('ghosting'),
+					autoUpdateAverage: starbox.hasClass('autoupdate'),
+					buttons: starbox.hasClass('smooth') ? false : starbox.attr('data-button-count') || 5,
+					stars: starbox.attr('data-star-count') || 5
+					}).bind('starbox-value-changed', function(event, value) {
+					if(starbox.hasClass('random')) {
+					var val = Math.random();
+					starbox.next().text(' '+val);
+					return val;
+					}
+				})
+			});
+		});
+		</script>
+<!---//End-rate---->
+
+
+
+
+  <!---->
+ <!--banner-->
+<div class="banner-top">
+	<div class="container">
+		<h3 >Profile</h3>
+		<h4><a href="/">Home</a><label>/</label>Profile</h4>
+		<div class="clearfix"> </div>
+	</div>
+</div>
+<!--login-->
+
+	<div class="login">
+		<div class="main-agileits">
+				<div class="form-w3agile form1">
+					<h3>Register</h3>
+					<form action="/completeyourprofile" method="post" enctype="multipart/form-data">
+						{% csrf_token %}
+						<div class="form-group">
+							<label class="mb-2">Name:</label>
+							<input type="text" class="form-control" placeholder="Name" name="name" required="">
+						</div>
+						<div class="form-group">
+							<label class="mb-2">DOB:</label>
+							<input type="date" class="form-control" placeholder="Date of Birth" name="dob" required=""
+								   oninput="
+                                        const dob = new Date(this.value);
+                                        const today = new Date();
+                                        if (dob >= today) {
+                                            this.setCustomValidity('Date of birth must be in the past');
+                                            this.reportValidity();
+                                        } else {
+                                            this.setCustomValidity('');
+                                            this.reportValidity();
+                                        }
+                                    ">
+						</div>
+						<div class="form-group">
+                                <label class="mb-2">Address</label>
+                                <input type="text" class="form-control" id="address" name="address" placeholder="Address" required="">
+						</div>
+						<div class="form-group">
+                                <label for="dp">Upload Profile Picture:</label>
+                                <input type="file" name="dp" id="dp" class="form-control">
+						</div>
+
+						 <div class="form-group">
+                               <label>Choose a State:</label>
+                                    <select id="statename" name="statename" class="form-control">
+                                        {% for s in statedetail %}
+                                      <option value="{{s.id}}">{{s.State_name}}</option>
+                                        {% endfor %}
+                                    </select>
+
+                            </div>
+
+
+						<div class="form-group">
+                               <label>Choose a City:</label>
+                                    <select id="cityname" name="cityname" class="form-control">
+                                        {% for city in citydetail %}
+                                      <option value="{{city.id}}">{{city.City_name}}</option>
+                                    {% endfor %}
+                                    </select>
+                            </div>
+
+						<div class="form-group">
+
+                               <label>Choose a Area:</label>
+                                    <select  id="areaname" name="areaname" class="form-control">
+                                        {% for a in areadetail %}
+                                      <option value="{{a.id}}">{{a.Area_name}}</option>
+                                        {% endfor %}
+                                    </select>
+                            </div>
+
+
+
+
+
+
+						<input type="submit" value="Submit">
+					</form>
+				</div>
+
+			</div>
+		</div>
+<!--footer-->
+<script type="text/javascript">
+		$(document).ready(function() {
+		/*
+			var defaults = {
+			containerID: 'toTop', // fading element id
+			containerHoverID: 'toTopHover', // fading element hover id
+			scrollSpeed: 1200,
+			easingType: 'linear'
+			};
+		*/
+		$().UItoTop({ easingType: 'easeOutQuart' });
+		});
+	</script>
+	<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+<!-- //smooth scrolling -->
+<!-- for bootstrap working -->
+		<script src=" {% static 'js/bootstrap.js' %} "></script>
+<!-- //for bootstrap working -->
+<script type='text/javascript' src=" {% static 'js/jquery.mycart.js' %} "></script>
+  <script type="text/javascript">
+  $(function () {
+
+    var goToCartIcon = function($addTocartBtn){
+      var $cartIcon = $(".my-cart-icon");
+      var $image = $('<img width="30px" height="30px" src=" {% static '' + $addTocartBtn.data(' %} "image") + '"/>').css({"position": "fixed", "z-index": "999"});
+      $addTocartBtn.prepend($image);
+      var position = $cartIcon.position();
+      $image.animate({
+        top: position.top,
+        left: position.left
+      }, 500 , "linear", function() {
+        $image.remove();
+      });
+    }
+
+    $('.my-cart-btn').myCart({
+      classCartIcon: 'my-cart-icon',
+      classCartBadge: 'my-cart-badge',
+      affixCartIcon: true,
+      checkoutCart: function(products) {
+        $.each(products, function(){
+          console.log(this);
+        });
+      },
+      clickOnAddToCart: function($addTocart){
+        goToCartIcon($addTocart);
+      },
+      getDiscountPrice: function(products) {
+        var total = 0;
+        $.each(products, function(){
+          total += this.quantity * this.price;
+        });
+        return total * 1;
+      }
+    });
+
+  });
+  </script>
+</body>
+{% endblock %}
+
+{% block js %}
+<!-- smooth scrolling -->
+	<script type="text/javascript">
+		$(document).ready(function() {
+		/*
+			var defaults = {
+			containerID: 'toTop', // fading element id
+			containerHoverID: 'toTopHover', // fading element hover id
+			scrollSpeed: 1200,
+			easingType: 'linear'
+			};
+		*/
+		$().UItoTop({ easingType: 'easeOutQuart' });
+		});
+	</script>
+	<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+<!-- //smooth scrolling -->
+<!-- for bootstrap working -->
+		<script src=" {% static 'js/bootstrap.js' %} "></script>
+<!-- //for bootstrap working -->
+<script type='text/javascript' src=" {% static 'js/jquery.mycart.js' %} "></script>
+  <script type="text/javascript">
+  $(function () {
+
+    var goToCartIcon = function($addTocartBtn){
+      var $cartIcon = $(".my-cart-icon");
+      var $image = $('<img width="30px" height="30px" src=" {% static '' + $addTocartBtn.data(' %} "image") + '"/>').css({"position": "fixed", "z-index": "999"});
+      $addTocartBtn.prepend($image);
+      var position = $cartIcon.position();
+      $image.animate({
+        top: position.top,
+        left: position.left
+      }, 500 , "linear", function() {
+        $image.remove();
+      });
+    }
+
+    $('.my-cart-btn').myCart({
+      classCartIcon: 'my-cart-icon',
+      classCartBadge: 'my-cart-badge',
+      affixCartIcon: true,
+      checkoutCart: function(products) {
+        $.each(products, function(){
+          console.log(this);
+        });
+      },
+      clickOnAddToCart: function($addTocart){
+        goToCartIcon($addTocart);
+      },
+      getDiscountPrice: function(products) {
+        var total = 0;
+        $.each(products, function(){
+          total += this.quantity * this.price;
+        });
+        return total * 1;
+      }
+    });
+
+  });
+  </script>
+{% endblock %}
